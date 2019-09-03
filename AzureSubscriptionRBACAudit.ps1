@@ -146,7 +146,7 @@ $Azuresub = $SubscriptionSelection.Name -replace , '/'
 
 ForEach-Object {Write-Host "Getting Role Assignments" -ForegroundColor Yellow -NoNewline}
 ForEach-Object {Write-Host "`r`n========================================" -ForegroundColor Yellow -NoNewline}
-ForEach-Object {Write-Host "`nThis process can take at least 20 minutes to run since it is checking every Azure Role and its corresponding assignments." -ForegroundColor Yellow -NoNewline }
+ForEach-Object {Write-Host "`nThis process can take a while to run since it is checking every Azure Role and its corresponding assignments." -ForegroundColor Yellow -NoNewline }
 $roleAssignments = Get-AzRoleAssignment -IncludeClassicAdministrators
 
 ## Loop through each role assignment to determine the user assigned to that role. 
