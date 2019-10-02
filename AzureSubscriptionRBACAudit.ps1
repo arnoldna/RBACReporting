@@ -109,7 +109,7 @@ Function Resolve-AzAdGroupMembers {
     param(
         [guid]
         $GroupObjectId,
-        $GroupList = (Get-AzADGroup)
+        $GroupList
     )
     $VerbosePreference = 'continue'
     Write-Verbose -Message ('Resolving {0}' -f $GroupObjectId)
@@ -144,9 +144,14 @@ Select-AzSubscription -SubscriptionName $SubscriptionSelection.Name -ErrorAction
 ## Get current Azure Subscription Name to be used in reporting output
 $Azuresub = $SubscriptionSelection.Name -replace , '/'
 
-ForEach-Object {Write-Host "Getting Role Assignments" -ForegroundColor Yellow -NoNewline}
+ForEach-Object {Write-Host "Getting Azure AD Groups" -ForegroundColor Yellow -NoNewline}
 ForEach-Object {Write-Host "`r`n========================================" -ForegroundColor Yellow -NoNewline}
 ForEach-Object {Write-Host "`nThis process can take a while to run since it is checking every Azure Role and its corresponding assignments." -ForegroundColor Yellow -NoNewline }
+$GroupList = (Get-AzADGroup)
+
+ForEach-Object {Write-Host "Getting Role Assignments" -ForegroundColor Yellow -NoNewline}
+ForEach-Object {Write-Host "`r`n========================================" -ForegroundColor Yellow -NoNewline}
+
 $roleAssignments = Get-AzRoleAssignment -IncludeClassicAdministrators
 
 ## Loop through each role assignment to determine the user assigned to that role. 
