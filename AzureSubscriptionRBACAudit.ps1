@@ -109,7 +109,7 @@ Function Resolve-AzAdGroupMembers {
     param(
         [guid]
         $GroupObjectId,
-        $GroupList
+        $GroupList 
     )
     $VerbosePreference = 'continue'
     Write-Verbose -Message ('Resolving {0}' -f $GroupObjectId)
@@ -161,7 +161,7 @@ $members = $roleAssignments | ForEach-Object -Process {
     
     if($roleAssignment.ObjectType -eq 'Group') 
     {
-        Resolve-AzAdGroupMembers -GroupObjectId $roleAssignment.ObjectId `
+        Resolve-AzAdGroupMembers -GroupObjectId $roleAssignment.ObjectId -GroupList $GroupList `
         | Select-Object -Property Id,
             DisplayName,
             ParentGroup, @{
